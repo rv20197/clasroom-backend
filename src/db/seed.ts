@@ -1,4 +1,4 @@
-import { index, pool } from './index';
+import { db, pool } from './index';
 import * as schema from './schema';
 
 async function seed() {
@@ -7,7 +7,7 @@ async function seed() {
 
     // 1. Seed Departments
     console.log('Seeding departments...');
-    const insertedDepartments = await index
+    const insertedDepartments = await db
       .insert(schema.departments)
       .values([
         {
@@ -39,7 +39,7 @@ async function seed() {
 
     // 2. Seed Subjects
     console.log('Seeding subjects...');
-    await index.insert(schema.subjects).values([
+    await db.insert(schema.subjects).values([
       {
         departmentId: csDept.id,
         code: 'CS101',
